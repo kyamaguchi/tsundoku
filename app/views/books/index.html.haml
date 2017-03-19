@@ -2,6 +2,11 @@
   .col-md-12
     %h1 Books
 
+    .panel.panel-primary
+      .panel-body
+        = form_tag search_books_path, class: 'form-inline', method: :get do
+          .form-group= select_tag :author, options_for_select(@authors.map{|v| [v,v] }, params[:author]), class: 'form-control', include_blank: true
+          = submit_tag 'Filter', class: 'btn btn-default'
     = paginate @books
     %table.table.table-striped.table-hover.table-sm
       %thead
