@@ -1,8 +1,8 @@
 class BooksController < ApplicationController
   def index
-    @authors = Book.pluck(:raw_author).uniq.sort
-    @books = if params[:author].present?
-      Book.where(raw_author: params[:author]).page(params[:page])
+    @authors = Author.order(:name).all
+    @books = if params[:author_id].present?
+      Book.joins(:author).where(authors: {id: params[:author_id]}).page(params[:page])
     else
       Book.page(params[:page])
     end

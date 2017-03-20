@@ -5,7 +5,7 @@
     .panel.panel-primary
       .panel-body
         = form_tag search_books_path, class: 'form-inline', method: :get do
-          .form-group= select_tag :author, options_for_select(@authors.map{|v| [v,v] }, params[:author]), class: 'form-control', include_blank: true
+          .form-group= select_tag :author_id, options_for_select(@authors.map{|a| [a.name,a.id] }, params[:author_id]), class: 'form-control', include_blank: true
           = submit_tag 'Filter', class: 'btn btn-default'
     = paginate @books
     %table.table.table-striped.table-hover.table-sm
