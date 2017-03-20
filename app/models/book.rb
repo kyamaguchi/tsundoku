@@ -11,6 +11,6 @@ class Book < ApplicationRecord
   private
 
     def set_author
-      self.author = Author.where(name: self.raw_author).first_or_create!
+      self.author = Author.with_normalized_name(self.raw_author).first_or_create!
     end
 end
