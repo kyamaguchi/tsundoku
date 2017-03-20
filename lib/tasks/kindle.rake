@@ -6,7 +6,7 @@ namespace :kindle do
     puts "Found #{books.size} books"
     books.each do |book|
       next if Book.where(asin: book.asin).exists?
-      Book.create(asin: book.asin, title: book.title, author: book.author, tag: book.tag, date: book.date, collection_count: book.collection_count)
+      Book.create(asin: book.asin, title: book.title, author: book.raw_author, tag: book.tag, date: book.date, collection_count: book.collection_count)
     end
     puts "#{Book.count} books in total"
   end
