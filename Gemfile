@@ -41,6 +41,7 @@ gem 'kaminari'
 gem 'haml-rails'
 gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'tether-rails'
+gem 'ransack'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
