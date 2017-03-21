@@ -16,3 +16,10 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(document).on('turbolinks:load', function() {
+  $("#select_all_books").on('change', function() {
+    var checked = $(this).prop("checked");
+    $("input.book_check:checkbox").prop('checked', checked);
+  });
+});

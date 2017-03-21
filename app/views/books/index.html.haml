@@ -6,7 +6,7 @@
       %table.table.table-striped.table-hover.table-sm
         %thead
           %tr
-            %th
+            %th= check_box_tag "select_all_books"
             %th Title
             %th Author
             %th Asin
@@ -17,7 +17,7 @@
         %tbody
           - @books.each do |book|
             %tr
-              %td= check_box_tag "book_ids[]", book.id
+              %td= check_box_tag "book_ids[]", book.id, book.read, class: 'book_check', id: "book_ids_#{book.id}"
               %td= book.title
               %td= book.raw_author
               %td= book.asin
