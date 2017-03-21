@@ -13,6 +13,11 @@ RSpec.describe Author, type: :model do
     expect(author.name).to eql('TestA')
   end
 
+  it "should normalize name including zenkaku space" do
+    author = create(:author, name: 'Test　A')
+    expect(author.name).to eql('TestA')
+  end
+
   it "should normalize name including zenkaku" do
     author = create(:author, name: 'Ｔｅｓｔ１２３')
     expect(author.name).to eql('Test123')
