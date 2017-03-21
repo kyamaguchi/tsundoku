@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   def index
-    @authors = Author.order(:name).all
+    @authors = Author.includes(:books).order(:name).all.select{|a| params[:books_count].present? ? (a.books.size >= params[:books_count].to_i) : true }
     @books = if params[:author_id].present?
       Book.joins(:author).where(authors: {id: params[:author_id]}).page(params[:page])
     else

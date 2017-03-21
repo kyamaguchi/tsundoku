@@ -1,12 +1,6 @@
 .row
   .col-md-12
     %h1 Books
-
-    .panel.panel-primary
-      .panel-body
-        = form_tag search_books_path, class: 'form-inline', method: :get do
-          .form-group= select_tag :author_id, options_for_select(@authors.map{|a| [a.name,a.id] }, params[:author_id]), class: 'form-control', include_blank: true
-          = submit_tag 'Filter', class: 'btn btn-default'
     = paginate @books
     %table.table.table-striped.table-hover.table-sm
       %thead
@@ -26,3 +20,5 @@
             %td= book.tag
             %td= book.date
             %td= book.collection_count
+    = render 'filter'
+    = render 'author_links', authors: @authors, books_count: (params[:books_count].presence || 1)

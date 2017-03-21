@@ -1,0 +1,6 @@
+.row
+  - authors.in_groups_of((Author.count/4.0).ceil, false) do |group|
+    .col-md-3
+      %ul
+        - group.each do |author|
+          %li= link_to "#{author.name} (#{author.books.size})", books_path(author_id: author.id, books_count: books_count)

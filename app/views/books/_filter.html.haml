@@ -1,0 +1,7 @@
+.card
+  .card-block
+    = form_tag search_books_path, class: 'form-inline', method: :get do
+      .form-group
+        = label_tag :books_count, 'Filter authors by books count'
+        = select_tag :books_count, options_for_select([1,2,3,4,5,10,20,50].map{|v| [v,v] }, params[:books_count]), class: 'form-control'
+      = submit_tag 'Filter', class: 'btn btn-default'
