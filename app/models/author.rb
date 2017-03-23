@@ -5,15 +5,11 @@ class Author < ApplicationRecord
 
   before_validation :normalize_name
 
-  scope :with_normalized_name, -> (name){ where(name: normalize(name)) }
-
-  def self.normalize(name)
-    name.tr('０-９ａ-ｚＡ-Ｚ', '0-9a-zA-Z').gsub(/[\s　]+/,'')
-  end
+  scope :with_normalized_name, -> (name){ where(name: Normalizer.normalize(name)) }
 
   private
 
     def normalize_name
-      self.name = self.class.normalize(name)
+      self.name = Normalizer.normalize(name)
     end
 end

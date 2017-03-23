@@ -8,19 +8,9 @@ RSpec.describe Author, type: :model do
     }.to raise_error(ActiveRecord::RecordInvalid)
   end
 
-  it "should normalize name" do
+  it "normalizes name on save" do
     author = create(:author, name: 'Test A')
     expect(author.name).to eql('TestA')
-  end
-
-  it "should normalize name including zenkaku space" do
-    author = create(:author, name: 'Test　A')
-    expect(author.name).to eql('TestA')
-  end
-
-  it "should normalize name including zenkaku" do
-    author = create(:author, name: 'Ｔｅｓｔ１２３')
-    expect(author.name).to eql('Test123')
   end
 
   it "has many books" do
