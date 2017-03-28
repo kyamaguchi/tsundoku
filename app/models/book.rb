@@ -3,6 +3,8 @@ class Book < ApplicationRecord
 
   belongs_to :author
 
+  acts_as_taggable_on :guessed_tags
+
   before_validation :set_author
 
   validates_uniqueness_of :asin

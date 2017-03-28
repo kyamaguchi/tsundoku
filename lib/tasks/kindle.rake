@@ -11,3 +11,13 @@ namespace :kindle do
     puts "#{Book.count} books in total"
   end
 end
+
+namespace :tags do
+  desc "Guess tags from titles"
+  task :guess_from_title => :environment do |t, args|
+    Book.all.each do |book|
+      book.guessed_tag_list.add Normalizer.extract_categories(book.title)[:categories]
+      book.save!
+    end
+  end
+end
