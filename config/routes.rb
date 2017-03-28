@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       put :mark_as_read
     end
   end
+  resources :tags, only: [:index]
 
   root to: 'dashboard#index'
 end

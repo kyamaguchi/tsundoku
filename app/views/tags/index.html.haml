@@ -1,0 +1,27 @@
+.row
+  .col-md-12
+    %h1 Tags
+    .row
+      .columns.col-sm-4
+        .card
+          .card-block
+            %h4.card-title Search Tags
+            - if @tags.size > 0
+              = "Found #{@tags.size} tags"
+            = form_tag tags_path, method: :get do
+              = text_field_tag :keyword, params[:keyword]
+              = submit_tag 'Search'
+    .row
+      .columns.col-sm-12.end
+        %table.table.table-striped.table-hover.table-sm
+          %thead
+            %tr
+              %th ID
+              %th Name
+              %th Count
+          %tbody
+            - @tags.each do |tag|
+              %tr
+                %td= tag.id
+                %td= tag.name
+                %td= tag.taggings_count
