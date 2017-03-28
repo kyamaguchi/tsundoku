@@ -18,8 +18,8 @@
 //= require_tree .
 
 $(document).on('turbolinks:load', function() {
-  $("#select_all_books").on('change', function() {
+  $(".select_all").on('change', function() {
     var checked = $(this).prop("checked");
-    $("input.book_check:checkbox").prop('checked', checked);
+    $(this).closest('table').find("input:checkbox").prop('checked', checked);
   });
 });
