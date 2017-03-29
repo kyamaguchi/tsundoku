@@ -3,6 +3,7 @@
     %h1 Books
     = paginate @books
     = form_tag mark_as_read_books_path, method: :put do
+      = submit_tag 'Mark selected books as read'
       %table.table.table-striped.table-hover.table-sm
         %thead
           %tr
@@ -14,6 +15,7 @@
             %th Date
             %th Collection Count
             %th Read
+            %th Guessed Tags
         %tbody
           - @books.each do |book|
             %tr
@@ -25,6 +27,4 @@
               %td= book.date
               %td= book.collection_count
               %td= book.read ? 'Y' : ''
-      = submit_tag 'Mark selected books as read'
-    = render 'filter'
-    = render 'author_links', authors: @authors, books_count: (params[:books_count].presence || 1)
+              %td= book.guessed_tag_list
