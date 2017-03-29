@@ -1,0 +1,8 @@
+.card
+  .card-block
+    = search_form_for q, class: 'form-inline' do |f|
+      = f.label :title_cont, 'Title'
+      = f.search_field :title_cont
+      = f.label :author_id_eq, 'Author'
+      = f.select :author_id_eq, authors.map{|a| ["#{a.name} (#{a.books.size})", a.id]}, {include_blank: true}, class: 'form-control'
+      = f.submit 'Search', class: 'btn btn-secondary'

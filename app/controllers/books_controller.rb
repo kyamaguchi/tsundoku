@@ -1,10 +1,8 @@
 class BooksController < ApplicationController
   def index
-    @books = if params[:author_id].present?
-      Book.joins(:author).where(authors: {id: params[:author_id]}).page(params[:page])
-    else
-      Book.page(params[:page])
-    end
+    @authors = Author.includes(:books).order(:name).all
+    @q = Book.ransack(params[:q])
+    @books = @q.result.page(params[:page])
   end
 
   def mark_as_read
