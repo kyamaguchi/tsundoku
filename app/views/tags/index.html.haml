@@ -22,9 +22,11 @@
                 %th= check_box_tag "select_all", nil, false, class: 'select_all'
                 %th= sort_link(@q, :name, 'Name')
                 %th= sort_link(@q, :taggings_count, 'Count')
+                %th Context
             %tbody
               - @tags.each do |tag|
                 %tr
                   %td= check_box_tag "tag_ids[]", tag.id, nil, class: 'tag_check', id: "tag_ids_#{tag.id}"
                   %td= highlight(tag.name, @q.name_cont)
                   %td= tag.taggings_count
+                  %td= tag.taggings.map(&:context).uniq.join(', ')
