@@ -1,0 +1,9 @@
+%nav.navbar.sticky-top.navbar-toggleable-md.navbar-inverse.bg-warning
+  %button.navbar-toggler.navbar-toggler-right{"aria-controls" => "navbarNavAltMarkup", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarNavAltMarkup", "data-toggle" => "collapse", :type => "button"}
+    %span.navbar-toggler-icon
+  %a.navbar-brand{:href => root_path} 積読
+  #navbarNavAltMarkup.collapse.navbar-collapse
+    .navbar-nav
+      %a.nav-item.nav-link{:href => root_path} Home
+      %a.nav-item.nav-link{:href => books_path} Books
+      %a.nav-item.nav-link{:href => tags_path} Tags
