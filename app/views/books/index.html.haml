@@ -6,36 +6,36 @@
         = render 'search_form', q: @q, authors: @authors
     .row
       .col
-        = form_tag mark_as_read_books_path, method: :put do
+        = paginate @books
+    = form_tag mark_as_read_books_path, method: :put do
+      .row
+        .col
           .card
             .card-block
               = submit_tag 'Mark selected books as read', class: 'btn btn-primary'
-    .row
-      .col
-        = paginate @books
-    .row
-      .col
-        %table.table.table-striped.table-hover.table-sm
-          %thead
-            %tr
-              %th= check_box_tag "select_all", nil, false, class: 'select_all'
-              %th= sort_link(@q, :title, 'Title')
-              %th= sort_link(@q, :raw_author, 'Author')
-              %th= sort_link(@q, :asin, 'Asin')
-              %th Tag
-              %th= sort_link(@q, :date, 'Date')
-              %th= sort_link(@q, :collection_count, 'Collection Count')
-              %th Read
-              %th Guessed Tags
-          %tbody
-            - @books.each do |book|
+      .row
+        .col
+          %table.table.table-striped.table-hover.table-sm
+            %thead
               %tr
-                %td= check_box_tag "book_ids[]", book.id, nil, class: 'book_check', id: "book_ids_#{book.id}"
-                %td= highlight(book.title, @q.title_cont)
-                %td= link_to book.raw_author, books_path(q: {author_id_eq: book.author_id})
-                %td= book.asin
-                %td= book.tag
-                %td= book.date
-                %td= book.collection_count
-                %td= book.read ? 'Y' : ''
-                %td= book.guessed_tag_list
+                %th= check_box_tag "select_all", nil, false, class: 'select_all'
+                %th= sort_link(@q, :title, 'Title')
+                %th= sort_link(@q, :raw_author, 'Author')
+                %th= sort_link(@q, :asin, 'Asin')
+                %th Tag
+                %th= sort_link(@q, :date, 'Date')
+                %th= sort_link(@q, :collection_count, 'Collection Count')
+                %th Read
+                %th Guessed Tags
+            %tbody
+              - @books.each do |book|
+                %tr
+                  %td= check_box_tag "book_ids[]", book.id, nil, class: 'book_check', id: "book_ids_#{book.id}"
+                  %td= highlight(book.title, @q.title_cont)
+                  %td= link_to book.raw_author, books_path(q: {author_id_eq: book.author_id})
+                  %td= book.asin
+                  %td= book.tag
+                  %td= book.date
+                  %td= book.collection_count
+                  %td= book.read ? 'Y' : ''
+                  %td= book.guessed_tag_list
