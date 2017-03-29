@@ -2,22 +2,29 @@
   .col-md-12
     %h1 Tags
     .row
-      .columns.col-sm-4
+      .col-sm-4.end
         = render 'search_form', q: @q, tags: @tags
     .row
       .col
         = paginate @tags
-    .row
-      .columns.col-sm-12.end
-        %table.table.table-striped.table-hover.table-sm
-          %thead
-            %tr
-              %th ID
-              %th= sort_link(@q, :name, 'Name')
-              %th= sort_link(@q, :taggings_count, 'Count')
-          %tbody
-            - @tags.each do |tag|
+    = form_tag apply_to_books_tags_path, method: :put do
+      .row
+        .col
+          .card
+            .card-block
+              = text_field_tag :new_tag
+              = submit_tag 'Apply tag to books of selected guessed tags', class: 'btn btn-primary'
+      .row
+        .col
+          %table.table.table-striped.table-hover.table-sm
+            %thead
               %tr
-                %td= tag.id
-                %td= highlight(tag.name, @q.name_cont)
-                %td= tag.taggings_count
+                %th= check_box_tag "select_all", nil, false, class: 'select_all'
+                %th= sort_link(@q, :name, 'Name')
+                %th= sort_link(@q, :taggings_count, 'Count')
+            %tbody
+              - @tags.each do |tag|
+                %tr
+                  %td= check_box_tag "tag_ids[]", tag.id, nil, class: 'tag_check', id: "tag_ids_#{tag.id}"
+                  %td= highlight(tag.name, @q.name_cont)
+                  %td= tag.taggings_count

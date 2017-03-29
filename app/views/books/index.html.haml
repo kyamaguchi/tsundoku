@@ -27,6 +27,7 @@
                 %th= sort_link(@q, :collection_count, 'Collection Count')
                 %th Read
                 %th Guessed Tags
+                %th Tags
             %tbody
               - @books.each do |book|
                 %tr
@@ -39,3 +40,4 @@
                   %td= book.collection_count
                   %td= book.read ? 'Y' : ''
                   %td= book.guessed_tag_list
+                  %td= book.tag_list
