@@ -1,7 +1,6 @@
 class TagsController < ApplicationController
   def index
-    context = 'guessed_tags'
-    query = params[:keyword].present? ? ActsAsTaggableOn::Tag.where('name LIKE ?', "%#{params[:keyword]}%") : ActsAsTaggableOn::Tag
-    @tags = query.order(taggings_count: :desc).all
+    @q = ActsAsTaggableOn::Tag.ransack(params[:q])
+    @tags = @q.result.order(taggings_count: :desc).page(params[:page]).per(100)
   end
 end
