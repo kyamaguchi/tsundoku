@@ -29,4 +29,6 @@
                   %td= check_box_tag "tag_ids[]", tag.id, nil, class: 'tag_check', id: "tag_ids_#{tag.id}"
                   %td= highlight(tag.name, @q.name_cont)
                   %td= tag.taggings_count
-                  %td= tag.taggings.map(&:context).uniq.join(', ')
+                  %td
+                    - tag.taggings.to_a.uniq{|t| t.context }.each do |t|
+                      = link_to t.context, books_path(context: t.context, tag_name: tag.name)
