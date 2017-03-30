@@ -1,8 +1,6 @@
 .card
   .card-block
     %h4.card-title Search Tags
-    - if tags.total_count > 0
-      = "Found #{tags.total_count} tags"
     = search_form_for q, url: tags_path, class: 'form-inline' do |f|
       = f.label :name_cont, 'Name'
       = f.search_field :name_cont

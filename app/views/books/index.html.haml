@@ -6,6 +6,7 @@
         = render 'search_form', q: @q, authors: @authors
     .row
       .col
+        = page_entries_info @books
         = paginate @books
     = form_tag mark_as_read_books_path, method: :put do
       .row

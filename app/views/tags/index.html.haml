@@ -3,9 +3,10 @@
     %h1 Tags
     .row
       .col-sm-4.end
-        = render 'search_form', q: @q, tags: @tags
+        = render 'search_form', q: @q
     .row
       .col
+        = page_entries_info @tags
         = paginate @tags
     = form_tag apply_to_books_tags_path, method: :put do
       .row
