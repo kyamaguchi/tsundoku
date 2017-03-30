@@ -15,3 +15,11 @@
       .card-block
         %h4.card-title Number of authors
         %p.card-text= Author.count
+.row
+  .columns.col-sm-4.end
+    .card
+      .card-block
+        %h4.card-title Tags
+        %ul
+          - @tags.each do |tag|
+            %li= "#{tag.last} (#{tag.first})"
