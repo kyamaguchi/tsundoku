@@ -1,0 +1,19 @@
+.row
+  .col-md-12
+    %h1 Tags Summary
+    .row
+      .col
+        %table.table.table-striped.table-hover.table-sm
+          %thead
+            %tr
+              %th Name
+              %th guessed_tags
+              - @tag_names.each do |tag_name|
+                %th= tag_name
+          %tbody
+            - @summary.each do |tag_name, data|
+              %tr
+                %td= tag_name
+                %td= data["guessed_tags_size"]
+                - @tag_names.each do |tag_name|
+                  %td= data[tag_name]

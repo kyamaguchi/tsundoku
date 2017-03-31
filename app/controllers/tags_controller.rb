@@ -15,4 +15,25 @@ class TagsController < ApplicationController
     end
     redirect_back(fallback_location: tags_path, notice: 'Applied tags to books')
   end
+
+  def summary
+    @tag_names = ActsAsTaggableOn::Tagging.includes(:tag).where(context: :tags).all.group_by{|t| t.tag.name }.map{|name,r| [name, r.size] }.sort_by(&:last).reverse.map(&:first)
+
+    result = {}
+    ActsAsTaggableOn::Tagging.includes(:tag).group_by(&:taggable_id).each do |_,taggings|
+      tag_names = taggings.select{|t| t.context == "tags" }.map{|t| t.tag.name }
+      taggings.each do |t|
+        next if t.context == "tags"
+        result[t.tag.name] ||= {"guessed_tags_size" => 0, "size" => 0}
+        result[t.tag.name]["guessed_tags_size"] += 1
+        result[t.tag.name]["size"] += 1
+        tag_names.each do |tag_name|
+          result[t.tag.name][tag_name] ||= 0
+          result[t.tag.name][tag_name] += 1
+          result[t.tag.name]["size"] += 1
+        end
+      end
+    end
+    @summary = result.sort_by{|k,v| [-v["guessed_tags_size"], -v["size"]] }
+  end
 end
