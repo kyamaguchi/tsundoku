@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   resources :authors, only: [:index]
   resources :tags, only: [:index] do
     collection do
-      get :summary
       put :apply_to_books
     end
   end

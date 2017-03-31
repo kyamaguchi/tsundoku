@@ -25,11 +25,6 @@ class TagsController < ApplicationController
     redirect_back(fallback_location: tags_path, notice: 'Applied tags to books')
   end
 
-  def summary
-    @tag_names = find_ordered_tag_names
-    @summary = summarize_guessed_tags
-  end
-
   private
 
   def find_ordered_tag_names

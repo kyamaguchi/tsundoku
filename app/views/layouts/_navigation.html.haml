@@ -10,9 +10,5 @@
         %a.nav-link{:href => books_path} Books
       %li.nav-item
         %a.nav-link{:href => authors_path} Authors
-      %li.nav-item.dropdown
-        %a#navbarDropdownMenuLink.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => 'javascript:void(0);'}
-          Tags
-        .dropdown-menu{"aria-labelledby" => "navbarDropdownMenuLink"}
-          %a.dropdown-item{:href => tags_path} Tags
-          %a.dropdown-item{:href => summary_tags_path} Summary
+      %li.nav-item
+        %a.nav-link{:href => tags_path} Tags
