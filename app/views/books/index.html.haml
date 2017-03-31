@@ -40,5 +40,9 @@
                   %td= book.date
                   %td= book.collection_count
                   %td= book.read ? 'Y' : ''
-                  %td= book.guessed_tag_list
-                  %td= book.tag_list
+                  %td
+                    - book.guessed_tag_list.each do |name|
+                      = link_to name, tags_path(q: {name_eq: name})
+                  %td
+                    - book.tag_list.each do |name|
+                      = link_to name, tags_path(q: {name_eq: name})
