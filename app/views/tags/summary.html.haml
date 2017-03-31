@@ -1,6 +1,6 @@
 .row
   .col-md-12
-    %h1 Tags Summary
+    %h1 Summary of Guessed Tags
     .row
       .col
         = link_to 'Exclude tagged', summary_tags_path(exclude_tagged: true)
@@ -10,13 +10,13 @@
           %thead
             %tr
               %th Name
-              %th guessed_tags
+              %th Size
               - @tag_names.each do |tag_name|
                 %th= tag_name
           %tbody
             - @summary.each do |tag_name, data|
               %tr
-                %td= tag_name
+                %td= link_to tag_name, books_path(tag_name: tag_name)
                 %td= data["guessed_tags_size"]
                 - @tag_names.each do |tag_name|
                   %td= data[tag_name]
