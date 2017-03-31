@@ -17,10 +17,19 @@ class TagsController < ApplicationController
   end
 
   def summary
-    @tag_names = ActsAsTaggableOn::Tagging.includes(:tag).where(context: :tags).all
-                   .group_by{|t| t.tag.name }.map{|name,r| [name, r.size] }
-                   .sort_by(&:last).reverse.map(&:first)
+    @tag_names = find_ordered_tag_names
+    @summary = summarize_guessed_tags
+  end
 
+  private
+
+  def find_ordered_tag_names
+    ActsAsTaggableOn::Tagging.includes(:tag).where(context: :tags).all
+      .group_by{|t| t.tag.name }.map{|name,r| [name, r.size] }
+      .sort_by(&:last).reverse.map(&:first)
+  end
+
+  def summarize_guessed_tags
     result = {}
     ActsAsTaggableOn::Tagging.includes(:tag).group_by(&:taggable_id).each do |_,taggings|
       tag_names = taggings.select{|t| t.context == "tags" }.map{|t| t.tag.name }
@@ -36,7 +45,6 @@ class TagsController < ApplicationController
         end
       end
     end
-    @summary = result.sort_by{|k,v| [-v["guessed_tags_size"], -v["size"]] }
-                 .select{|k,v| params[:exclude_tagged].present? ? (v["guessed_tags_size"] == v["size"]) : true }
+    result.sort_by{|k,v| [-v["guessed_tags_size"], -v["size"]] }
   end
 end
