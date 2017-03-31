@@ -2,6 +2,11 @@
   .card-block
     %h4.card-title Search Tags
     = search_form_for q, url: tags_path, class: 'form-inline' do |f|
-      = f.label :name_cont, 'Name'
-      = f.search_field :name_cont
-      = f.submit 'Search', class: 'btn btn-secondary'
+      .form-group
+        = check_box_tag :exclude_tagged, "1", params[:exclude_tagged] == '1'
+        = f.label :exclude_tagged, 'Exclude tagged'
+      .form-group
+        = f.label :name_cont, 'Name'
+        = f.search_field :name_cont
+      .form-group
+        = f.submit 'Search', class: 'btn btn-secondary'

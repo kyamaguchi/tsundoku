@@ -4,10 +4,11 @@
     .row
       .col-sm-4.end
         = render 'search_form', q: @q
-    .row
-      .col
-        = page_entries_info @tags
-        = paginate @tags
+    - unless params[:exclude_tagged] == '1'
+      .row
+        .col
+          = page_entries_info @tags
+          = paginate @tags
     = form_tag apply_to_books_tags_path, method: :put do
       .row
         .col
@@ -23,13 +24,18 @@
                 %th= check_box_tag "select_all", nil, false, class: 'select_all'
                 %th= sort_link(@q, :name, 'Name')
                 %th= sort_link(@q, :taggings_count, 'Count')
+                - @tag_names.each do |tag_name|
+                  %th= tag_name
                 %th Context
             %tbody
               - @tags.each do |tag|
+                - data = @summary.find{|r| r.first == tag.name }.try!(:last) || {}
                 %tr
                   %td= check_box_tag "tag_ids[]", tag.id, nil, class: 'tag_check', id: "tag_ids_#{tag.id}"
                   %td= highlight(tag.name, @q.name_cont)
                   %td= tag.taggings_count
+                  - @tag_names.each do |tag_name|
+                    %td= data[tag_name]
                   %td
                     - tag.taggings.to_a.uniq{|t| t.context }.each do |t|
                       = link_to t.context, books_path(context: t.context, tag_name: tag.name)
