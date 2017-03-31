@@ -17,7 +17,9 @@ class TagsController < ApplicationController
   end
 
   def summary
-    @tag_names = ActsAsTaggableOn::Tagging.includes(:tag).where(context: :tags).all.group_by{|t| t.tag.name }.map{|name,r| [name, r.size] }.sort_by(&:last).reverse.map(&:first)
+    @tag_names = ActsAsTaggableOn::Tagging.includes(:tag).where(context: :tags).all
+                   .group_by{|t| t.tag.name }.map{|name,r| [name, r.size] }
+                   .sort_by(&:last).reverse.map(&:first)
 
     result = {}
     ActsAsTaggableOn::Tagging.includes(:tag).group_by(&:taggable_id).each do |_,taggings|
@@ -35,5 +37,6 @@ class TagsController < ApplicationController
       end
     end
     @summary = result.sort_by{|k,v| [-v["guessed_tags_size"], -v["size"]] }
+                 .select{|k,v| params[:exclude_tagged].present? ? (v["guessed_tags_size"] == v["size"]) : true }
   end
 end

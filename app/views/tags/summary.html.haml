@@ -3,6 +3,9 @@
     %h1 Tags Summary
     .row
       .col
+        = link_to 'Exclude tagged', summary_tags_path(exclude_tagged: true)
+    .row
+      .col
         %table.table.table-striped.table-hover.table-sm
           %thead
             %tr
