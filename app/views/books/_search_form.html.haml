@@ -1,7 +1,6 @@
 .card
   .card-block
-    - if params[:context].present? && params[:tag_name].present?
-      = "Searched with Tag: #{params[:tag_name]} Context: #{params[:context]}"
+    = [(params[:tag_name] ? "Searched with Tag: [#{params[:tag_name]}]" : nil), (params[:context] ? "Context: [#{params[:context]}]" : nil)].compact.join(' ')
     = search_form_for q, class: 'form-inline' do |f|
       = f.label :title_cont, 'Title'
       = f.search_field :title_cont
