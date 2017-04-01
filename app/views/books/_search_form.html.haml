@@ -1,9 +1,20 @@
 .card
   .card-block
     = [(params[:tag_name] ? "Searched with Tag: [#{params[:tag_name]}]" : nil), (params[:context] ? "Context: [#{params[:context]}]" : nil)].compact.join(' ')
-    = search_form_for q, class: 'form-inline' do |f|
-      = f.label :title_cont, 'Title'
-      = f.search_field :title_cont
-      = f.label :author_id_eq, 'Author'
-      = f.select :author_id_eq, authors.map{|a| ["#{a.name} (#{a.books.size})", a.id]}, {include_blank: true}, class: 'form-control'
-      = f.submit 'Search', class: 'btn btn-secondary'
+    = search_form_for q do |f|
+      .row
+        .col-sm-12
+          = f.label :title_cont, 'Title'
+          = f.search_field :title_cont
+      .row
+        .col-sm-2
+          = f.label :author_id_eq, 'Author'
+        .col-sm-10
+          = f.select :author_id_eq, authors.map{|a| ["#{a.name} (#{a.books.size})", a.id]}, {include_blank: true}, class: 'form-control'
+      .row
+        .col-sm-12
+          = f.label :tag_eq, 'サンプル'
+          = f.check_box :tag_eq, {}, "サンプル", ""
+      .row
+        .col-sm-12
+          = f.submit 'Search', class: 'btn btn-secondary'
