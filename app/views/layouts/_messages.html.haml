@@ -1,0 +1,4 @@
+- flash.each do |type, message|
+  %div{ class: "alert #{bootstrap_flash_class(type)}" }
+    = message
+    %button.close{ data: { dismiss: 'alert' } } x
