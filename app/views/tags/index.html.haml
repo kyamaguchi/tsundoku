@@ -38,4 +38,7 @@
                     %td= data[tag_name]
                   %td
                     - tag.taggings.to_a.uniq{|t| t.context }.each do |t|
-                      = link_to t.context, books_path(context: t.context, tag_name: tag.name)
+                      = surround '[', ']' do
+                        = link_to t.context, books_path(context: t.context, tag_name: tag.name)
+                        - if t.context == 'tags'
+                          = link_to 'Remove', remove_tag_path(tag.id), method: :delete, class: 'btn btn-danger btn-sm'

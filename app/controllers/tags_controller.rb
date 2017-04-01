@@ -25,6 +25,15 @@ class TagsController < ApplicationController
     redirect_back(fallback_location: tags_path, notice: 'Applied tags to books')
   end
 
+  def remove
+    tag = ActsAsTaggableOn::Tag.includes(:taggings).find(params[:id])
+    tag.taggings.select{|t| t.context == 'tags' }.map{|t| t.taggable }.each do |book|
+      book.tag_list.remove(tag.name)
+      book.save!
+    end
+    redirect_to tags_path, notice: 'Removed tags from books'
+  end
+
   private
 
   def find_ordered_tag_names
