@@ -4,10 +4,13 @@ class TagsController < ApplicationController
     @summary = summarize_guessed_tags
 
     @q = ActsAsTaggableOn::Tag.ransack(params[:q])
-    @tags = if params[:exclude_tagged] == '1'
+    @tags = if params[:tags_filter] == 'exclude'
       tags = @q.result.includes(:taggings).order(taggings_count: :desc).all
       ids_without_tagged = @summary.map(&:last).select{|h| h["guessed_tags_size"] == h["size"] }.map{|h| h["id"] }
       @tags = tags.select{|tag| ids_without_tagged.include?(tag.id) }
+    elsif params[:tags_filter] == 'include'
+      tags = @q.result.includes(:taggings).order(taggings_count: :desc).all
+      @tags = tags.select{|tag| tag.taggings.any?{|t| t.context == 'tags' } }
     else
       @q.result.includes(:taggings).order(taggings_count: :desc).page(params[:page]).per(100)
     end

@@ -9,8 +9,12 @@
             = link_to '(Clear)', tags_path
       .row
         .col-sm-12
-          = check_box_tag :exclude_tagged, "1", params[:exclude_tagged] == '1'
-          = f.label :exclude_tagged, 'Exclude tagged'
+          = radio_button_tag :tags_filter, 'all', params[:tags_filter].blank? || params[:tags_filter] == 'all'
+          = label_tag :tags_filter_all, 'All tags'
+          = radio_button_tag :tags_filter, 'exclude', params[:tags_filter] == 'exclude'
+          = label_tag :tags_filter_exclude, 'Exclude tagged'
+          = radio_button_tag :tags_filter, 'include', params[:tags_filter] == 'include'
+          = label_tag :tags_filter_include, 'Only tagged'
       .row
         .col-sm-12
           = f.label :name_cont, 'Name'

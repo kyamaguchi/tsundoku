@@ -4,9 +4,11 @@
     .row
       .col-sm-6.end
         = render 'search_form', q: @q
-    - unless params[:exclude_tagged] == '1'
-      .row
-        .col
+    .row
+      .col
+        - if %w(include exclude).include?(params[:tags_filter])
+          = "Found #{@tags.size}"
+        - else
           = page_entries_info @tags
           = paginate @tags
     = form_tag apply_to_books_tags_path, method: :put do
