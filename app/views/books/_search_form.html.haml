@@ -13,8 +13,12 @@
           = f.select :author_id_eq, authors.map{|a| ["#{a.name} (#{a.books.size})", a.id]}, {include_blank: true}, class: 'form-control'
       .row
         .col-sm-12
-          = f.label :tag_eq, 'サンプル'
-          = f.check_box :tag_eq, {}, "サンプル", ""
+          = radio_button_tag :tag_sample, 'all', (params[:tag_sample].blank? || params[:tag_sample] == 'all')
+          = label_tag :tag_sample_all, '全て'
+          = radio_button_tag :tag_sample, 'exclude', params[:tag_sample] == 'exclude'
+          = label_tag :tag_sample_exclude, 'サンプル以外'
+          = radio_button_tag :tag_sample, 'include', params[:tag_sample] == 'include'
+          = label_tag :tag_sample_include, 'サンプルのみ'
       .row
         .col-sm-12
           = f.submit 'Search', class: 'btn btn-secondary'
