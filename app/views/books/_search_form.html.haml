@@ -21,4 +21,12 @@
           = label_tag :tag_sample_include, 'サンプルのみ'
       .row
         .col-sm-12
+          = radio_button_tag :read_flag, 'all', (params[:read_flag].blank? || params[:read_flag] == 'all')
+          = label_tag :read_flag_all, 'All'
+          = radio_button_tag :read_flag, 'exclude', params[:read_flag] == 'exclude'
+          = label_tag :read_flag_exclude, 'UnRead only'
+          = radio_button_tag :read_flag, 'include', params[:read_flag] == 'include'
+          = label_tag :read_flag_include, 'Read only'
+      .row
+        .col-sm-12
           = f.submit 'Search', class: 'btn btn-secondary'
