@@ -19,6 +19,7 @@
 //= require_tree .
 
 $(document).on('turbolinks:load', function() {
+  $('.datepicker').datepicker({dateFormat: 'yy-mm-dd'});
   $(".select_all").on('change', function() {
     var checked = $(this).prop("checked");
     $(this).closest('table').find("input:checkbox").prop('checked', checked);

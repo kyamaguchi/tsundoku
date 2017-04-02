@@ -12,6 +12,13 @@
         .col-sm-10
           = f.select :author_id_eq, authors.map{|a| ["#{a.name} (#{a.books.size})", a.id]}, {include_blank: true}, class: 'form-control'
       .row
+        .col-sm-2
+          = f.label :date_range, 'Date'
+        .col-sm-3
+          = f.search_field :date_gteq, class: 'form-control datepicker'
+        .col-sm-3.end
+          = f.search_field :date_lteq, class: 'form-control datepicker'
+      .row
         .col-sm-12
           = radio_button_tag :tag_sample, 'all', (params[:tag_sample].blank? || params[:tag_sample] == 'all')
           = label_tag :tag_sample_all, '全て'
