@@ -3,12 +3,26 @@
     %h1 Books
     .row
       .col
-        %span#total_books 0
-        %span Books found
-        %div
-          %label.sr-only{:for => "searchbox"} Search
-          %input#searchbox.form-control{:placeholder => "Search …", :type => "text"}/
-          %span.glyphicon.glyphicon-search.search-icon
+        .card
+          .card-block
+            .row
+              .col-sm-4
+                %span#total_books 0
+                %span Books found
+                %div
+                  %label.sr-only{:for => "searchbox"} Search
+                  %input#searchbox.form-control{:placeholder => "Search …", :type => "text"}/
+                  %span.glyphicon.glyphicon-search.search-icon
+              .col-sm-4.end
+                %h5 Filter by Read
+                #read_status.form-check
+                  %label.form-check-label
+                    %input#read.form-check-input{:type => "checkbox", :value => "Y"}
+                    Read (Y)
+                  %label.form-check-label
+                    %input#unread.form-check-input{:type => "checkbox", :value => "N"}
+                    Unread (N)
+
     = form_tag mark_as_read_books_path, method: :put do
       .row
         .col

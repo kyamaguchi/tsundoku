@@ -30,6 +30,9 @@ $(document).on('turbolinks:load', function() {
     var FJS = FilterJS([], '#books-body', {
       template: '#book-row',
       search: {ele: '#searchbox'},
+      criterias:[
+        {field: 'read', ele: '#read_status :checkbox'}
+      ],
       callbacks: {
         afterFilter: function(result){
           $('#total_books').text(result.length);
@@ -42,5 +45,7 @@ $(document).on('turbolinks:load', function() {
       stream_after: 1,
       batch_size: 500
     });
+
+    $('#read_status :checkbox').prop('checked', true);
   }
 });
