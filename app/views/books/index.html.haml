@@ -22,6 +22,12 @@
                   %label.form-check-label
                     %input#unread.form-check-input{:type => "checkbox", :value => "N"}
                     Unread (N)
+                %h5 Filter by Tag
+                #tag.form-check
+                  - @tags.each_with_index do |tag,i|
+                    %label.form-check-label
+                      %input.form-check-input{:type => "checkbox", :value => tag, :id => "tag#{i+1}"}
+                      = tag
 
     = form_tag mark_as_read_books_path, method: :put do
       .row

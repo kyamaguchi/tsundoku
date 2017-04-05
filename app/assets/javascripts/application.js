@@ -31,7 +31,8 @@ $(document).on('turbolinks:load', function() {
       template: '#book-row',
       search: {ele: '#searchbox'},
       criterias:[
-        {field: 'read', ele: '#read_status :checkbox'}
+        {field: 'read', ele: '#read_status :checkbox'},
+        {field: 'tag', ele: '#tag :checkbox'}
       ],
       callbacks: {
         afterFilter: function(result){
@@ -47,5 +48,6 @@ $(document).on('turbolinks:load', function() {
     });
 
     $('#read_status :checkbox').prop('checked', true);
+    $('#tag :checkbox').prop('checked', true);
   }
 });
