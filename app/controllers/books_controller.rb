@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   def index
+    @authors = Author.includes(:books).order(:name).all
     @tags = Book.pluck(:tag).uniq.reject(&:blank?).sort + ['None']
   end
 

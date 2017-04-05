@@ -31,6 +31,7 @@ $(document).on('turbolinks:load', function() {
       template: '#book-row',
       search: {ele: '#searchbox'},
       criterias:[
+        {field: 'author_id', ele: '#author', all: 'all'},
         {field: 'read', ele: '#read_status :checkbox'},
         {field: 'tag', ele: '#tag :checkbox'}
       ],
