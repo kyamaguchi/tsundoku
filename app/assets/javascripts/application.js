@@ -16,6 +16,7 @@
 //= require bootstrap
 //= require jquery_ujs
 //= require turbolinks
+//= require filter
 //= require_tree .
 
 $(document).on('turbolinks:load', function() {
