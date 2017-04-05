@@ -25,4 +25,22 @@ $(document).on('turbolinks:load', function() {
     var checked = $(this).prop("checked");
     $(this).closest('table').find("input:checkbox").prop('checked', checked);
   });
+
+  if($('#books').length > 0) {
+    var FJS = FilterJS([], '#books-body', {
+      template: '#book-row',
+      search: {ele: '#searchbox'},
+      callbacks: {
+        afterFilter: function(result){
+          $('#total_books').text(result.length);
+        }
+      }
+    });
+
+    FJS.setStreaming({
+      data_url: 'books/data.json',
+      stream_after: 1,
+      batch_size: 500
+    });
+  }
 });
