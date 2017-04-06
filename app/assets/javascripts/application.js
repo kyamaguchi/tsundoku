@@ -37,7 +37,7 @@ $(document).on('turbolinks:load', function() {
       ],
       callbacks: {
         afterFilter: function(result){
-          $('#total_books').text(result.length);
+          $('#current_books_count').text(result.length);
         }
       }
     });
@@ -50,5 +50,22 @@ $(document).on('turbolinks:load', function() {
 
     $('#read_status :checkbox').prop('checked', true);
     $('#tag :checkbox').prop('checked', true);
+
+    FJS.addCallback('afterAddRecords', function(){
+      var total_books_count = $('#total_books_count').data('count');
+
+      var percent = 0;
+      if(total_books_count > 0) {
+        percent = parseInt(this.recordsCount*100/total_books_count);
+      } else {
+        percent = 100;
+      }
+
+      $('#stream_progress').text(percent + '%').attr('style', 'width: '+ percent +'%;');
+
+      if (percent == 100){
+        $('#stream_progress').parent().fadeOut(1000);
+      }
+    });
   }
 });

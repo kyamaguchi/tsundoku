@@ -7,8 +7,11 @@
           .card-block
             .row
               .col-sm-4
-                %span#total_books 0
-                %span Books found
+                .row
+                  .progress.col-sm-10.offset-sm-1.end
+                    .progress-bar#stream_progress{style: "width: 0%;"} 0%
+                %span#current_books_count 0
+                %span#total_books_count{data: {count: @total_books_count}}= " / #{@total_books_count} Books found"
                 .form-group
                   %label.sr-only{:for => "searchbox"} Search
                   %input#searchbox.form-control{:placeholder => "Search …", :type => "text"}/
