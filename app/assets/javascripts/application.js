@@ -33,7 +33,8 @@ $(document).on('turbolinks:load', function() {
       criterias:[
         {field: 'author_id', ele: '#author', all: 'all'},
         {field: 'read', ele: '#read_status :checkbox'},
-        {field: 'tag', ele: '#tag :checkbox'}
+        {field: 'tag', ele: '#tag :checkbox'},
+        {field: 'tag_list', ele: '#tag_list :checkbox'},
       ],
       callbacks: {
         afterFilter: function(result){
@@ -50,6 +51,7 @@ $(document).on('turbolinks:load', function() {
 
     $('#read_status :checkbox').prop('checked', true);
     $('#tag :checkbox').prop('checked', true);
+    $('#tag_list :checkbox').prop('checked', true);
 
     FJS.addCallback('afterAddRecords', function(){
       var total_books_count = $('#total_books_count').data('count');

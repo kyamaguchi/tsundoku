@@ -18,7 +18,7 @@
                   %span.glyphicon.glyphicon-search.search-icon
                 .form-group
                   = select_tag :author, options_for_select([['Author', 'all']] + @authors.map{|a| [a.name, a.id] }, params[:author_id]), class: 'form-control'
-              .col-sm-4.end
+              .col-sm-4
                 %h5 Filter by Read
                 #read_status.form-check
                   %label.form-check-label
@@ -32,6 +32,13 @@
                   - @tags.each_with_index do |tag,i|
                     %label.form-check-label
                       %input.form-check-input{:type => "checkbox", :value => tag, :id => "tag#{i+1}"}
+                      = tag
+              .col-sm-4.end
+                %h5 Filter by Tag list
+                #tag_list.form-check
+                  - @tag_list.each_with_index do |tag,i|
+                    %label.form-check-label
+                      %input.form-check-input{:type => "checkbox", :value => tag, :id => "tag#_list{i+1}"}
                       = tag
 
     = form_tag mark_as_read_books_path, method: :put do
