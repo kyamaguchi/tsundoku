@@ -14,7 +14,7 @@ class Book < ApplicationRecord
     super().merge({
       tag: (tag.presence || 'None'),
       read: (!!read ? 'Y' : 'N'),
-      tag_list: tag_list.presence || ['None'],
+      tag_list: tags.map(&:name).presence || ['None'],
     })
   end
 
