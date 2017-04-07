@@ -29,7 +29,7 @@ $(document).on('turbolinks:load', function() {
   if($('#books').length > 0) {
     var FJS = FilterJS([], '#books-body', {
       template: '#book-row',
-      search: {ele: '#searchbox', fields: ['title', 'raw_author']},
+      search: {ele: '#searchbox', fields: ['title', 'raw_author'], start_length: 1},
       criterias:[
         {field: 'author_id', ele: '#author', all: 'all'},
         {field: 'read', ele: '#read_status :checkbox'},
