@@ -1,0 +1,14 @@
+<script id="book-row" type="text/html">
+  <tr>
+    <td><input type="checkbox" name="book_ids[]" id="book_ids_<%= id %>" value="<%= id %>" class="book_check"></td>
+    <td><%= title %></td>
+    <td><a href="/books?author_id=<%= author_id %>"><%= raw_author %></a></td>
+    <td><%= asin %></td>
+    <td><%= tag %></td>
+    <td><%= date %></td>
+    <td><%= collection_count %></td>
+    <td><%= read %></td>
+    <td></td>
+    <td><%= tag_list %></td>
+  </tr>
+</script>

@@ -16,6 +16,7 @@
 //= require bootstrap
 //= require jquery_ujs
 //= require turbolinks
+//= require filter
 //= require_tree .
 
 $(document).on('turbolinks:load', function() {
@@ -24,4 +25,49 @@ $(document).on('turbolinks:load', function() {
     var checked = $(this).prop("checked");
     $(this).closest('table').find("input:checkbox").prop('checked', checked);
   });
+
+  if($('#books').length > 0) {
+    var FJS = FilterJS([], '#books-body', {
+      template: '#book-row',
+      search: {ele: '#searchbox', fields: ['title', 'raw_author']},
+      criterias:[
+        {field: 'author_id', ele: '#author', all: 'all'},
+        {field: 'read', ele: '#read_status :checkbox'},
+        {field: 'tag', ele: '#tag :checkbox'},
+        {field: 'tag_list', ele: '#tag_list :checkbox'},
+      ],
+      callbacks: {
+        afterFilter: function(result){
+          $('#current_books_count').text(result.length);
+        }
+      }
+    });
+
+    FJS.setStreaming({
+      data_url: 'books/data.json',
+      stream_after: 1,
+      batch_size: 500
+    });
+
+    $('#read_status :checkbox').prop('checked', true);
+    $('#tag :checkbox').prop('checked', true);
+    $('#tag_list :checkbox').prop('checked', true);
+
+    FJS.addCallback('afterAddRecords', function(){
+      var total_books_count = $('#total_books_count').data('count');
+
+      var percent = 0;
+      if(total_books_count > 0) {
+        percent = parseInt(this.recordsCount*100/total_books_count);
+      } else {
+        percent = 100;
+      }
+
+      $('#stream_progress').text(percent + '%').attr('style', 'width: '+ percent +'%;');
+
+      if (percent == 100){
+        $('#stream_progress').parent().fadeOut(1000);
+      }
+    });
+  }
 });

@@ -10,6 +10,14 @@ class Book < ApplicationRecord
   validates_uniqueness_of :asin
   validates_presence_of :asin, :title
 
+  def as_json(options={})
+    super().merge({
+      tag: (tag.presence || 'None'),
+      read: (!!read ? 'Y' : 'N'),
+      tag_list: tags.map(&:name).presence || ['None'],
+    })
+  end
+
   private
 
     def set_author

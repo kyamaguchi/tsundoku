@@ -3,11 +3,44 @@
     %h1 Books
     .row
       .col
-        = render 'search_form', q: @q, authors: @authors
-    .row
-      .col
-        = page_entries_info @books
-        = paginate @books
+        .card
+          .card-block
+            .row
+              .col-sm-4
+                .row
+                  .progress.col-sm-10.offset-sm-1.end
+                    .progress-bar#stream_progress{style: "width: 0%;"} 0%
+                %span#current_books_count 0
+                %span#total_books_count{data: {count: @total_books_count}}= " / #{@total_books_count} Books found"
+                .form-group
+                  %label.sr-only{:for => "searchbox"} Search
+                  %input#searchbox.form-control{:placeholder => "Search …", :type => "text"}/
+                  %span.glyphicon.glyphicon-search.search-icon
+                .form-group
+                  = select_tag :author, options_for_select([['Author', 'all']] + @authors.map{|a| [a.name, a.id] }, params[:author_id]), class: 'form-control'
+              .col-sm-4
+                %h5 Filter by Read
+                #read_status.form-check
+                  %label.form-check-label
+                    %input#read.form-check-input{:type => "checkbox", :value => "Y"}
+                    Read (Y)
+                  %label.form-check-label
+                    %input#unread.form-check-input{:type => "checkbox", :value => "N"}
+                    Unread (N)
+                %h5 Filter by Tag
+                #tag.form-check
+                  - @tags.each_with_index do |tag,i|
+                    %label.form-check-label
+                      %input.form-check-input{:type => "checkbox", :value => tag, :id => "tag#{i+1}"}
+                      = tag
+              .col-sm-4.end
+                %h5 Filter by Tag list
+                #tag_list.form-check
+                  - @tag_list.each_with_index do |tag,i|
+                    %label.form-check-label
+                      %input.form-check-input{:type => "checkbox", :value => tag, :id => "tag#_list{i+1}"}
+                      = tag
+
     = form_tag mark_as_read_books_path, method: :put do
       .row
         .col
@@ -16,33 +49,18 @@
               = submit_tag 'Mark selected books as read', class: 'btn btn-primary'
       .row
         .col
-          %table.table.table-striped.table-hover.table-sm
+          = render 'book_row'
+          %table#books.table.table-striped.table-hover.table-sm
             %thead
               %tr
                 %th= check_box_tag "select_all", nil, false, class: 'select_all'
-                %th= sort_link(@q, :title, 'Title')
-                %th= sort_link(@q, :raw_author, 'Author')
-                %th= sort_link(@q, :asin, 'Asin')
+                %th Title
+                %th Author
+                %th Asin
                 %th Tag
-                %th= sort_link(@q, :date, 'Date')
-                %th= sort_link(@q, :collection_count, 'Collection Count')
+                %th Date
+                %th Collection Count
                 %th Read
                 %th Guessed Tags
                 %th Tags
-            %tbody
-              - @books.each do |book|
-                %tr
-                  %td= check_box_tag "book_ids[]", book.id, nil, class: 'book_check', id: "book_ids_#{book.id}"
-                  %td= highlight(book.title, @q.title_cont)
-                  %td= link_to book.raw_author, books_path(q: {author_id_eq: book.author_id})
-                  %td= book.asin
-                  %td= book.tag
-                  %td= book.date
-                  %td= book.collection_count
-                  %td= book.read ? 'Y' : ''
-                  %td
-                    - book.guessed_tag_list.each do |name|
-                      = link_to name, tags_path(q: {name_eq: name})
-                  %td
-                    - book.tag_list.each do |name|
-                      = link_to name, tags_path(q: {name_eq: name})
+            %tbody#books-body

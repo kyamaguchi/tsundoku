@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :books, only: [:index] do
     collection do
+      get :data
       put :mark_as_read
     end
   end
