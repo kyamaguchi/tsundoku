@@ -23,7 +23,7 @@ $(document).on('turbolinks:load', function() {
   $('.datepicker').datepicker({dateFormat: 'yy-mm-dd'});
   $(".select_all").on('change', function() {
     var checked = $(this).prop("checked");
-    $(this).closest('table').find("input:checkbox").prop('checked', checked);
+    $(this).closest('table').find("tr:visible input:checkbox").prop('checked', checked);
   });
 
   if($('#books').length > 0) {
