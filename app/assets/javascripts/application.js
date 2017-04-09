@@ -34,7 +34,6 @@ $(document).on('turbolinks:load', function() {
         {field: 'author_id', ele: '#author', all: 'all'},
         {field: 'read', ele: '#read_status :checkbox'},
         {field: 'tag', ele: '#tag :checkbox'},
-        {field: 'tag_list', ele: '#tag_list :checkbox'},
       ],
       callbacks: {
         afterFilter: function(result){
@@ -47,6 +46,10 @@ $(document).on('turbolinks:load', function() {
       data_url: 'books/data.json',
       stream_after: 1,
       batch_size: 500
+    });
+
+    $('#tag_list .form-check').each(function(){
+      FJS.addCriteria({field: $(this).attr('id'), ele: '#' + $(this).attr('id') + ' :checkbox'});
     });
 
     $('#read_status :checkbox').prop('checked', true);

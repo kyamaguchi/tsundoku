@@ -11,11 +11,15 @@ class Book < ApplicationRecord
   validates_presence_of :asin, :title
 
   def as_json(options={})
-    super().merge({
+    attrs = {
       tag: (tag.presence || 'None'),
       read: (!!read ? 'Y' : 'N'),
       tag_list: tags.map(&:name).presence || ['None'],
-    })
+    }
+    options.fetch(:tag_ids, []).each do |id|
+      attrs["tag_list#{id}"] = tags.find{|e| e.id == id }.present? ? 'Y' : 'N'
+    end
+    super().merge(attrs)
   end
 
   private
