@@ -37,7 +37,7 @@
                 %h5 Filter by Tag list
                 - @tag_list.each do |tag|
                   .form-check{id: "tag_list#{tag.id}", style: 'margin-bottom: 0;'}
-                    = label_tag "tag_list_label#{tag.id}", tag.name, style: 'margin-bottom: 0;'
+                    = label_tag "tag_list_label#{tag.id}", "#{tag.name} (#{tag.taggings_count})", style: 'margin-bottom: 0;'
                     %label.form-check-label
                       %input.form-check-input{:type => "checkbox", :value => 'Y'} Y
                     %label.form-check-label
