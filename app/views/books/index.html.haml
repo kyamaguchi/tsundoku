@@ -43,12 +43,14 @@
                     %label.form-check-label
                       %input.form-check-input{:type => "checkbox", :value => "N"} N
 
-    = form_tag mark_as_read_books_path, method: :put do
+    = form_tag update_selected_books_path, method: :put do
       .row
         .col
           .card
             .card-block
-              = submit_tag 'Mark selected books as read', class: 'btn btn-primary'
+              = label_tag :mark_as, 'Mark as'
+              = submit_tag 'Read', formaction: update_selected_books_path(type: :read_true), class: 'btn btn-primary'
+              = submit_tag 'Unread', formaction: update_selected_books_path(type: :read_false), class: 'btn btn-primary'
       .row
         .col
           = render 'book_row'

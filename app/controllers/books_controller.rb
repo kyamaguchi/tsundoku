@@ -11,16 +11,27 @@ class BooksController < ApplicationController
     render json: Book.includes(:tags => :taggings).limit(params[:limit]).offset(params[:offset]).to_json(tag_ids: @tag_list.map(&:id))
   end
 
-  def mark_as_read
+  def update_selected
     Book.where(id: params[:book_ids]).all.each do |book|
-      book.update(read: true)
+      book.update(update_attrs)
     end
-    redirect_back(fallback_location: books_path, notice: 'Marked as read')
+    redirect_back(fallback_location: books_path, notice: 'Updated')
   end
 
   private
 
     def load_tag_list
       @tag_list = ActsAsTaggableOn::Tagging.includes(:tag).where(context: :tags).map{|t| t.tag }.uniq.sort
+    end
+
+    def update_attrs
+      case params[:type]
+      when "read_true"
+        {read: true}
+      when "read_false"
+        {read: false}
+      else
+        {}
+      end
     end
 end

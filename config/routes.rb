@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :books, only: [:index] do
     collection do
       get :data
-      put :mark_as_read
+      put :update_selected
     end
   end
   resources :authors, only: [:index]
