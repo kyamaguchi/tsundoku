@@ -12,8 +12,20 @@ class BooksController < ApplicationController
   end
 
   def update_selected
-    Book.where(id: params[:book_ids]).all.each do |book|
-      book.update(update_attrs)
+    books = Book.where(id: params[:book_ids]).all
+    if update_tag?
+      books.each do |book|
+        if params[:type] == 'add_tag'
+          book.tag_list.add(params[:tag].strip)
+        elsif params[:type] == 'remove_tag'
+          book.tag_list.remove(params[:tag].strip)
+        end
+        book.save!
+      end
+    elsif update_attrs.present?
+      books.each do |book|
+        book.update(update_attrs)
+      end
     end
     redirect_back(fallback_location: books_path, notice: 'Updated')
   end
@@ -33,5 +45,9 @@ class BooksController < ApplicationController
       else
         {}
       end
+    end
+
+    def update_tag?
+      %w[add_tag remove_tag].include?(params[:type]) && params[:tag].present?
     end
 end

@@ -43,14 +43,22 @@
                     %label.form-check-label
                       %input.form-check-input{:type => "checkbox", :value => "N"} N
 
-    = form_tag update_selected_books_path, method: :put do
+    = form_tag update_selected_books_path, method: :put, class: 'form-horizontal' do
       .row
         .col
           .card
             .card-block
-              = label_tag :mark_as, 'Mark as'
-              = submit_tag 'Read', formaction: update_selected_books_path(type: :read_true), class: 'btn btn-primary'
-              = submit_tag 'Unread', formaction: update_selected_books_path(type: :read_false), class: 'btn btn-primary'
+              .row
+                .col-sm-4
+                  = label_tag :mark_as, 'Mark as'
+                  = submit_tag 'Read', formaction: update_selected_books_path(type: :read_true), class: 'btn btn-primary btn-sm'
+                  = submit_tag 'Unread', formaction: update_selected_books_path(type: :read_false), class: 'btn btn-primary btn-sm'
+                .col-sm-8.form-inline
+                  .row
+                    .col-sm-12
+                      = text_field_tag :tag, nil, class: 'form-control', placeholder: 'Tag'
+                      = submit_tag 'Add', formaction: update_selected_books_path(type: :add_tag), class: 'btn btn-primary btn-sm'
+                      = submit_tag 'Remove', formaction: update_selected_books_path(type: :remove_tag), class: 'btn btn-primary btn-sm'
       .row
         .col
           = render 'book_row'
