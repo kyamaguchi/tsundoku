@@ -19,6 +19,11 @@
 //= require filter
 //= require_tree .
 
+function searchThis(e) {
+  $('#searchbox').val($(e).text());
+  FJS.filter();
+}
+
 $(document).on('turbolinks:load', function() {
   $('.datepicker').datepicker({dateFormat: 'yy-mm-dd'});
   $(".select_all").on('change', function() {
@@ -41,6 +46,7 @@ $(document).on('turbolinks:load', function() {
         }
       }
     });
+    window.FJS = FJS;
 
     FJS.setStreaming({
       data_url: 'books/data.json',

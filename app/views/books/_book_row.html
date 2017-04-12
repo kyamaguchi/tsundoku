@@ -8,7 +8,11 @@
     <td><%= date %></td>
     <td><%= collection_count %></td>
     <td><%= read %></td>
-    <td></td>
+    <td>
+      <% for(var t in guessed_tag_list) { %>
+        <a href="javascript:void(0);" onclick="searchThis(this);" class="guessed_tag"><%= guessed_tag_list[t] %></a>
+      <% } %>
+    </td>
     <td><%= tag_list %></td>
   </tr>
 </script>

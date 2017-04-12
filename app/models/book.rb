@@ -14,6 +14,7 @@ class Book < ApplicationRecord
     attrs = {
       tag: (tag.presence || 'None'),
       read: (!!read ? 'Y' : 'N'),
+      guessed_tag_list: guessed_tags.map(&:name).presence || [],
       tag_list: tags.map(&:name).presence || ['None'],
     }
     options.fetch(:tag_ids, []).each do |id|
