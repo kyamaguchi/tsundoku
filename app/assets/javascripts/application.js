@@ -30,6 +30,11 @@ $(document).on('turbolinks:load', function() {
     var checked = $(this).prop("checked");
     $(this).closest('table').find("tr:visible input:checkbox").prop('checked', checked);
   });
+  $('#clear_filter_button').on('click', function() {
+    $('#searchbox').val('');
+    $('#author').val('all');
+    FJS.filter();
+  });
 
   if($('#books').length > 0) {
     var FJS = FilterJS([], '#books-body', {
