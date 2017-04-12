@@ -119,7 +119,7 @@ GEM
     kaminari (0.17.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
-    kindle_manager (0.1.1)
+    kindle_manager (0.1.3)
       amazon_auth (~> 0.1.3)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
