@@ -56,7 +56,8 @@
                 .col-sm-8.form-inline
                   .row
                     .col-sm-12
-                      = text_field_tag :tag, nil, class: 'form-control', placeholder: 'Tag'
+                      = select_tag :tag_select, options_for_select(@tag_list.map(&:name)), include_blank: true, class: 'form-control'
+                      = text_field_tag :tag_text, nil, class: 'form-control', placeholder: 'Tag'
                       = submit_tag 'Add', formaction: update_selected_books_path(type: :add_tag), class: 'btn btn-primary btn-sm'
                       = submit_tag 'Remove', formaction: update_selected_books_path(type: :remove_tag), class: 'btn btn-primary btn-sm'
       .row

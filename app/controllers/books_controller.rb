@@ -16,9 +16,9 @@ class BooksController < ApplicationController
     if update_tag?
       books.each do |book|
         if params[:type] == 'add_tag'
-          book.tag_list.add(params[:tag].strip)
+          book.tag_list.add(tag_to_update)
         elsif params[:type] == 'remove_tag'
-          book.tag_list.remove(params[:tag].strip)
+          book.tag_list.remove(tag_to_update)
         end
         book.save!
       end
@@ -48,6 +48,10 @@ class BooksController < ApplicationController
     end
 
     def update_tag?
-      %w[add_tag remove_tag].include?(params[:type]) && params[:tag].present?
+      %w[add_tag remove_tag].include?(params[:type]) && tag_to_update.present?
+    end
+
+    def tag_to_update
+      params[:tag_text].strip.presence || params[:tag_select].strip
     end
 end
