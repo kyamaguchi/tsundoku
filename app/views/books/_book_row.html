@@ -1,18 +1,17 @@
 <script id="book-row" type="text/html">
-  <tr>
+  <tr title="<%= asin %>">
     <td><input type="checkbox" name="book_ids[]" id="book_ids_<%= id %>" value="<%= id %>" class="book_check"></td>
     <td><%= title %></td>
     <td><a href="/books?author_id=<%= author_id %>"><%= raw_author %></a></td>
-    <td><%= asin %></td>
     <td><%= tag %></td>
-    <td><%= date %></td>
+    <td class="date_cell"><%= date %></td>
     <td><%= collection_count %></td>
     <td><%= read %></td>
-    <td>
+    <td class="guessed_tag_list_cell">
       <% for(var t in guessed_tag_list) { %>
-        <a href="javascript:void(0);" onclick="searchThis(this);" class="guessed_tag"><%= guessed_tag_list[t] %></a>
+        <a href="javascript:void(0);" onclick="searchThis(this);"><%= guessed_tag_list[t] %></a>
       <% } %>
     </td>
-    <td><%= tag_list %></td>
+    <td class="tag_list_cell"><%= tag_list %></td>
   </tr>
 </script>
