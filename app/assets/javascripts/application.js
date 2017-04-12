@@ -72,5 +72,10 @@ $(document).on('turbolinks:load', function() {
         $('#stream_progress').parent().fadeOut(1000);
       }
     });
+
+    var params = new URLSearchParams(location.search.slice(1));
+    if (params.get('tag_list')) {
+      $('#tag_list' + params.get('tag_list') + ' .no:checkbox').prop('checked', false);
+    }
   }
 });

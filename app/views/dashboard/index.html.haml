@@ -21,5 +21,5 @@
       .card-block
         %h4.card-title Tags
         %ul
-          - @tags.each do |tag|
-            %li= link_to "#{tag.last} (#{tag.first})", books_path(tag_name: tag.last)
+          - @tag_list.each do |tag|
+            %li= link_to "#{tag.name} (#{tag.taggings_count})", books_path(tag_list: tag.id)
