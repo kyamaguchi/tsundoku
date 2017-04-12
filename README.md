@@ -1,24 +1,50 @@
-# README
+# Tsundoku
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Manage pile of unread books
 
-Things you may want to cover:
+## Setup
 
-* Ruby version
+### Setup db
 
-* System dependencies
+```
+bundle
+rake db:migrate
+```
 
-* Configuration
+### Setup fetching of kindle books data (kindle_manager gem)
 
-* Database creation
+See [amazon_auth gem](https://github.com/kyamaguchi/amazon_auth)
 
-* Database initialization
+```
+amazon_auth
+vi .env
 
-* How to run the test suite
+rails console
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+On console
 
-* Deployment instructions
+```
+client = KindleManager::Client.new(debug: true)
+client.fetch_kindle_list
+books = client.load_kindle_books
+```
 
-* ...
+### Run Rails app
+
+```
+rails server
+```
+
+## Update books
+
+```
+rake kindle:fetch
+rake kindle:import
+rake tags:guess_from_title
+```
+
+## TODO
+
+- Update tags without reloading page
+- Update books based on last update

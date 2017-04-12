@@ -4,7 +4,7 @@ namespace :kindle do
     new_dir = args.new_dir == 'true'
     limit = (args.limit.presence || 100).to_i
     client = KindleManager::Client.new(debug: true, limit: limit, create: new_dir)
-    books = client.fetch_kindle_list
+    client.fetch_kindle_list
   end
 
   desc "Import books from files generated with kindle_manager"
