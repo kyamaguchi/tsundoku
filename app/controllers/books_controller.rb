@@ -2,7 +2,7 @@ class BooksController < ApplicationController
   before_action :load_tag_list
 
   def index
-    @authors = Author.includes(:books).order(:name).all
+    @authors = Author.order(:name).all
     @tags = Book.pluck(:tag).uniq.reject(&:blank?).sort + ['None']
     @total_books_count = Book.count
   end
