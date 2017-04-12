@@ -8,14 +8,6 @@ Rails.application.routes.draw do
     end
   end
   resources :authors, only: [:index]
-  resources :tags, only: [:index] do
-    member do
-      delete :remove
-    end
-    collection do
-      put :apply_to_books
-    end
-  end
 
   root to: 'dashboard#index'
 end
