@@ -23,6 +23,10 @@ function searchThis(e) {
   $('#searchbox').val($(e).text());
   FJS.filter();
 }
+function searchAuthor(author_id) {
+  $('#author').val(author_id);
+  FJS.filter();
+}
 
 $(document).on('turbolinks:load', function() {
   $('.datepicker').datepicker({dateFormat: 'yy-mm-dd'});
@@ -87,6 +91,9 @@ $(document).on('turbolinks:load', function() {
     var params = new URLSearchParams(location.search.slice(1));
     if (params.get('tag_list')) {
       $('#tag_list' + params.get('tag_list') + ' .no:checkbox').prop('checked', false);
+    }
+    if (params.get('author_id')) {
+      $('#author').val(params.get('author_id'));
     }
   }
 });

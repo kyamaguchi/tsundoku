@@ -17,7 +17,7 @@
                   %input#searchbox.form-control{:placeholder => "Search …", :type => "text"}/
                   %span.glyphicon.glyphicon-search.search-icon
                 .form-group
-                  = select_tag :author, options_for_select([['Author', 'all']] + @authors.map{|a| [a.name, a.id] }, params[:author_id]), class: 'form-control'
+                  = select_tag :author, options_for_select([['Author', 'all']] + @authors.map{|a| [a.name, a.id] }), class: 'form-control'
                 .form-group
                   = submit_tag 'Clear', class: 'btn btn-secondary btn-default', id: 'clear_filter_button'
               .col-sm-4
