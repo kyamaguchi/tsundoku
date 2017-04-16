@@ -25,8 +25,16 @@ end
 namespace :tags do
   desc "Guess tags from titles"
   task :guess_from_title => :environment do |t, args|
+    kindle_tag_map = {
+      "サンプル" => "Sample",
+      "Kindleオーナー ライブラリー" => "Owner",
+    }
+
     Book.all.each do |book|
       book.guessed_tag_list.add Normalizer.extract_categories(book.title)[:categories]
+      if book.tag.present? && (new_tag = kindle_tag_map[book.tag].presence || book.tag)
+        book.tag_list.add new_tag
+      end
       book.save!
     end
   end
