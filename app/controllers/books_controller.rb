@@ -3,7 +3,6 @@ class BooksController < ApplicationController
 
   def index
     @authors = Author.order(:name).all
-    @tags = Book.pluck(:tag).uniq.reject(&:blank?).sort + ['None']
     @total_books_count = Book.count
   end
 

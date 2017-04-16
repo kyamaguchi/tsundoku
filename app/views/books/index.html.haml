@@ -20,14 +20,7 @@
                   = select_tag :author, options_for_select([['Author', 'all']] + @authors.map{|a| [a.name, a.id] }), class: 'form-control'
                 .form-group
                   = submit_tag 'Clear', class: 'btn btn-secondary btn-default', id: 'clear_filter_button'
-              .col-sm-4
-                %h5 Filter by Tag
-                #tag.form-check
-                  - @tags.each_with_index do |tag,i|
-                    %label.form-check-label
-                      %input.form-check-input{:type => "checkbox", :value => tag, :id => "tag#{i+1}"}
-                      = tag
-              #tag_list.col-sm-4.end
+              #tag_list.col-sm-8.end
                 %h5 Filter by Tag list
                 - @tag_list.each do |tag|
                   .form-check{id: "tag_list#{tag.id}", style: 'margin-bottom: 0;'}
@@ -59,7 +52,6 @@
                 %th= check_box_tag "select_all", nil, false, class: 'select_all'
                 %th Title
                 %th Author
-                %th Tag
                 %th Date
                 %th Collection Count
                 %th Guessed Tags

@@ -46,7 +46,6 @@ $(document).on('turbolinks:load', function() {
       search: {ele: '#searchbox', fields: ['title', 'raw_author'], start_length: 1},
       criterias:[
         {field: 'author_id', ele: '#author', all: 'all'},
-        {field: 'tag', ele: '#tag :checkbox'},
       ],
       callbacks: {
         afterFilter: function(result){
@@ -66,7 +65,6 @@ $(document).on('turbolinks:load', function() {
       FJS.addCriteria({field: $(this).attr('id'), ele: '#' + $(this).attr('id') + ' :checkbox'});
     });
 
-    $('#tag :checkbox').prop('checked', true);
     $('#tag_list :checkbox').prop('checked', true);
 
     FJS.addCallback('afterAddRecords', function(){
