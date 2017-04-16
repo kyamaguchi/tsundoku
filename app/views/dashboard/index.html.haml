@@ -1,21 +1,5 @@
 %h1 Dashboard
 .row
-  .columns.col-sm-4
-    .card
-      .card-block
-        %h4.card-title Number of read books
-        %p.card-text= "#{Book.where(read: true).count} / #{Book.count}"
-  .columns.col-sm-4
-    .card
-      .card-block
-        %h4.card-title Number of sample books
-        %p.card-text= "#{Book.where(tag: 'サンプル').count} / #{Book.count}"
-  .columns.col-sm-4
-    .card
-      .card-block
-        %h4.card-title Number of authors
-        %p.card-text= Author.count
-.row
   .columns.col-sm-4.end
     .card
       .card-block

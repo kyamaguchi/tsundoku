@@ -21,14 +21,6 @@
                 .form-group
                   = submit_tag 'Clear', class: 'btn btn-secondary btn-default', id: 'clear_filter_button'
               .col-sm-4
-                %h5 Filter by Read
-                #read_status.form-check
-                  %label.form-check-label
-                    %input#read.form-check-input{:type => "checkbox", :value => "Y"}
-                    Read (Y)
-                  %label.form-check-label
-                    %input#unread.form-check-input{:type => "checkbox", :value => "N"}
-                    Unread (N)
                 %h5 Filter by Tag
                 #tag.form-check
                   - @tags.each_with_index do |tag,i|
@@ -51,11 +43,7 @@
           .card
             .card-block
               .row
-                .col-sm-4
-                  = label_tag :mark_as, 'Mark as'
-                  = submit_tag 'Read', formaction: update_selected_books_path(type: :read_true), class: 'btn btn-primary btn-sm'
-                  = submit_tag 'Unread', formaction: update_selected_books_path(type: :read_false), class: 'btn btn-primary btn-sm'
-                .col-sm-8.form-inline
+                .col-sm-12.form-inline
                   .row
                     .col-sm-12
                       = select_tag :tag_select, options_for_select(@tag_list.map(&:name)), include_blank: true, class: 'form-control'
@@ -74,7 +62,6 @@
                 %th Tag
                 %th Date
                 %th Collection Count
-                %th Read
                 %th Guessed Tags
                 %th Tags
             %tbody#books-body
