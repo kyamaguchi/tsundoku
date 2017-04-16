@@ -8,7 +8,7 @@ class BooksController < ApplicationController
   end
 
   def data
-    render json: Book.includes(:guessed_tags, :tags).limit(params[:limit]).offset(params[:offset]).to_json(tag_ids: @tag_list.map(&:id))
+    render json: Book.includes(:guessed_tags, :tags).order(date: :desc).limit(params[:limit]).offset(params[:offset]).to_json(tag_ids: @tag_list.map(&:id))
   end
 
   def update_selected
