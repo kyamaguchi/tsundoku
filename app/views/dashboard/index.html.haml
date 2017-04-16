@@ -1,9 +1,0 @@
-%h1 Dashboard
-.row
-  .columns.col-sm-4.end
-    .card
-      .card-block
-        %h4.card-title Tags
-        %ul
-          - @tag_list.each do |tag|
-            %li= link_to "#{tag.name} (#{tag.taggings_count})", books_path(tag_list: tag.id)

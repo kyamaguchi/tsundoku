@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'dashboard/index'
 
   resources :books, only: [:index] do
     collection do
@@ -9,5 +8,5 @@ Rails.application.routes.draw do
   end
   resources :authors, only: [:index]
 
-  root to: 'dashboard#index'
+  root to: 'books#index'
 end
