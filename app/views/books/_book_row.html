@@ -4,7 +4,6 @@
     <td><%= title %></td>
     <td><a href="javascript:void(0);" onclick="searchAuthor('<%= author_id %>');"><%= raw_author %></a></td>
     <td class="date_cell"><%= date %></td>
-    <td><%= collection_count %></td>
     <td class="guessed_tag_list_cell">
       <% for(var t in guessed_tag_list) { %>
         <a href="javascript:void(0);" onclick="searchThis(this);"><%= guessed_tag_list[t] %></a>
