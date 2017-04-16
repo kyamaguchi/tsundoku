@@ -4,7 +4,7 @@
   %a.navbar-brand{:href => root_path} 積読
   #navbarNavAltMarkup.collapse.navbar-collapse
     %ul.navbar-nav
-      %li.nav-item
+      %li.nav-item{class: (params["controller"] == "books" ? 'active' : nil)}
         %a.nav-link{:href => books_path} Books
-      %li.nav-item
+      %li.nav-item{class: (params["controller"] == "authors" ? 'active' : nil)}
         %a.nav-link{:href => authors_path} Authors
