@@ -1,6 +1,11 @@
-# Tsundoku
+# Tsundoku 積読
 
-Manage pile of unread books
+Manage pile of unread books  
+
+["Tsundoku"](https://en.wikipedia.org/wiki/Tsundoku) From Wikipedia  
+[Tsundoku: Japan's Word for 'Books You Buy But Don't Read'](https://www.tofugu.com/japanese/tsundoku/)  
+
+![books-922321_1280](https://cloud.githubusercontent.com/assets/275284/25094616/f7640402-23d2-11e7-96b8-24c22c435745.jpg)
 
 ## Setup
 
