@@ -3,7 +3,7 @@ namespace :kindle do
   task :fetch, [:limit,:new_dir] => :environment do |t, args|
     new_dir = args.new_dir == 'true'
     limit = (args.limit.presence || 100).to_i
-    client = KindleManager::Client.new(debug: true, limit: limit, create: new_dir)
+    client = KindleManager::Client.new(debug: true, limit: limit, create: new_dir, max_scroll_attempts: 30)
     client.fetch_kindle_list
   end
 

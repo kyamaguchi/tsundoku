@@ -18,7 +18,9 @@ rake db:migrate
 
 ### Setup fetching of kindle books data (kindle_manager gem)
 
-See [amazon_auth gem](https://github.com/kyamaguchi/amazon_auth)
+See [amazon_auth gem](https://github.com/kyamaguchi/amazon_auth) and [kindle_manager gem](https://github.com/kyamaguchi/kindle_manager)  
+
+[chromedriver](https://sites.google.com/a/chromium.org/chromedriver/downloads) is required. Please [download chromedriver](http://chromedriver.storage.googleapis.com/index.html) and update chromedriver regularly.  
 
 ```
 amazon_auth
@@ -41,12 +43,37 @@ books = client.load_kindle_books
 rails server
 ```
 
+### How to manage books
+
+You can manage books with adding tags to books.  
+You can find some filters(Read, Reading, Hope to read) in https://kindle.amazon.co.jp/your_reading .  
+<img width="521" alt="kindle_your_reading_filter" src="https://user-images.githubusercontent.com/275284/26866394-dd13ecf2-4b9b-11e7-99b9-1da816b3a107.png" style="max-width:100%;border: 1px gray solid;">
+
+Example of tags:
+
+- Checked - The books you managed their tags
+- Hope to read
+- Read
+
+The task `rake tags:guess_from_title` will add the following tags and some guessed tags.
+
+- Sample
+- Owner - Owner library
+
+<img width="533" alt="example_of_tags" src="https://user-images.githubusercontent.com/275284/26866399-e23be234-4b9b-11e7-9d45-765bcee4b0e6.png" style="max-width:100%;border: 1px gray solid;">
+
 ## Update books
 
 ```
 rake kindle:fetch
 rake kindle:import
 rake tags:guess_from_title
+```
+
+Fetch all kindle books data with new download directory.
+
+```
+rake kindle:fetch[10000,true]
 ```
 
 ## TODO
