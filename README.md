@@ -47,6 +47,7 @@ rails server
 
 You can manage books with adding tags to books.  
 You can find some filters(Read, Reading, Hope to read) in https://kindle.amazon.co.jp/your_reading .  
+<img width="521" alt="kindle_your_reading_filter" src="https://user-images.githubusercontent.com/275284/26866394-dd13ecf2-4b9b-11e7-99b9-1da816b3a107.png" style="max-width:100%;border: 1px gray solid;">
 
 Example of tags:
 
@@ -58,6 +59,8 @@ The task `rake tags:guess_from_title` will add the following tags and some guess
 
 - Sample
 - Owner - Owner library
+
+<img width="533" alt="example_of_tags" src="https://user-images.githubusercontent.com/275284/26866399-e23be234-4b9b-11e7-9d45-765bcee4b0e6.png" style="max-width:100%;border: 1px gray solid;">
 
 ## Update books
 
