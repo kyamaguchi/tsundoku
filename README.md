@@ -7,6 +7,10 @@ Manage pile of unread books
 
 ![books-922321_1280](https://cloud.githubusercontent.com/assets/275284/25094616/f7640402-23d2-11e7-96b8-24c22c435745.jpg)
 
+## Sites
+
+Currently, Kindle(Amazon) books are only supported.
+
 ## Setup
 
 ### Setup db
@@ -79,4 +83,5 @@ rake kindle:fetch[10000,true]
 ## TODO
 
 - Update tags without reloading page
-- Update books based on last update
+- Update(fetch) books based on last update
+- Import books data from several services
