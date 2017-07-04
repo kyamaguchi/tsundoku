@@ -10,7 +10,7 @@ namespace :kindle do
   desc "Import books from files generated with kindle_manager"
   task :import => :environment do |t, args|
     client = KindleManager::Client.new(debug: true)
-    puts "Loading book data from #{client.store.dir_name}"
+    puts "Loading book data"
     books = client.load_kindle_books
     puts "Found #{books.size} books"
     books.each do |book|
