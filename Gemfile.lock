@@ -151,6 +151,7 @@ GEM
     nio4r (2.1.0)
     nokogiri (1.8.0)
       mini_portile2 (~> 2.2.0)
+    pg (1.0.0)
     polyamorous (1.3.1)
       activerecord (>= 3.0)
     public_suffix (2.0.5)
@@ -277,6 +278,7 @@ DEPENDENCIES
   kaminari
   kindle_manager
   listen (~> 3.0.5)
+  pg
   puma (~> 3.0)
   rails (~> 5.0.2)
   ransack
@@ -292,4 +294,4 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 BUNDLED WITH
-   1.15.1
+   1.15.4
