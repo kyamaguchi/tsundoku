@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :book do
     sequence(:asin) {|n| "B00ABCDEF#{n}" }
     title  "Doe"
