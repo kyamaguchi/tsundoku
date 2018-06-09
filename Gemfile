@@ -39,6 +39,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 gem 'kindle_manager'
+gem 'capybara', '~> 2.18.0'
 gem 'dotenv-rails'
 gem 'kaminari'
 gem 'haml-rails'
