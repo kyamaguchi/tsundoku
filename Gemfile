@@ -50,12 +50,12 @@ gem 'acts-as-taggable-on', '~> 4.0'
 gem 'filterjs-rails'
 
 group :development, :test do
-  gem 'sqlite3'
+  gem 'sqlite3', '1.3.13'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
 
   gem 'rspec-rails'
-  gem 'factory_bot_rails'
+  gem 'factory_bot_rails', '~> 4.0'
 end
 
 group :development do
