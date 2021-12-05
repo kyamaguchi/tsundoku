@@ -1,4 +1,4 @@
-ruby "2.5.1"
+ruby "2.5.8"
 
 source 'https://rubygems.org'
 
@@ -39,7 +39,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 gem 'kindle_manager'
-gem 'capybara', '~> 2.18.0'
+gem 'capybara'
 gem 'dotenv-rails'
 gem 'kaminari'
 gem 'haml-rails'
