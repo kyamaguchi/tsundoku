@@ -17,7 +17,7 @@ Currently, Kindle(Amazon) books are only supported.
 
 ```
 bundle
-rake db:migrate
+rails db:migrate
 ```
 
 ### Setup fetching of kindle books data (kindle_manager gem)
@@ -59,7 +59,7 @@ Example of tags:
 - Hope to read
 - Read
 
-The task `rake tags:guess_from_title` will add the following tags and some guessed tags.
+The task `rails tags:guess_from_title` will add the following tags and some guessed tags.
 
 - Sample
 - Owner - Owner library
@@ -69,15 +69,28 @@ The task `rake tags:guess_from_title` will add the following tags and some guess
 ## Update books
 
 ```
-rake kindle:fetch
-rake kindle:import
-rake tags:guess_from_title
+rails kindle:fetch
+rails kindle:import
+rails tags:guess_from_title
 ```
 
 Fetch all kindle books data with new download directory.
 
 ```
-rake kindle:fetch[10000,true]
+rails kindle:fetch[10000,true]
+```
+
+### Using envchain
+
+`envchain` can be used to secure credentials
+
+See https://github.com/kyamaguchi/amazon_auth#envchain-for-security
+
+```
+envchain amazon rails kindle:fetch
+envchain amazon rails kindle:import
+
+envchain amazon rails console
 ```
 
 ## TODO
