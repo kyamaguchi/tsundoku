@@ -10,7 +10,7 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
-gem 'pg', '~> 0.18'
+gem 'sqlite3', '1.3.13'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
@@ -50,7 +50,6 @@ gem 'acts-as-taggable-on', '~> 4.0'
 gem 'filterjs-rails'
 
 group :development, :test do
-  gem 'sqlite3', '1.3.13'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
 

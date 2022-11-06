@@ -156,7 +156,6 @@ GEM
     nokogiri (1.13.9)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
-    pg (0.21.0)
     polyamorous (2.3.0)
       activerecord (>= 5.0)
     popper_js (1.16.1)
@@ -306,7 +305,6 @@ DEPENDENCIES
   kaminari
   kindle_manager
   listen (~> 3.0.5)
-  pg (~> 0.18)
   puma (~> 3.0)
   rails (~> 5.0.2)
   ransack
