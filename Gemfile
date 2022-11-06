@@ -42,7 +42,7 @@ gem 'haml-rails'
 gem 'bootstrap', '~> 4.6.2'
 gem 'tether-rails'
 gem 'ransack'
-gem 'acts-as-taggable-on', '~> 4.0'
+gem 'acts-as-taggable-on'
 gem 'filterjs-rails'
 
 group :development, :test do
