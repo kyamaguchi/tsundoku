@@ -26,9 +26,9 @@
                   .form-check{id: "tag_list#{tag.id}", style: 'margin-bottom: 0;'}
                     = label_tag "tag_list_label#{tag.id}", "#{tag.name} (#{tag.taggings_count})", style: 'margin-bottom: 0;'
                     %label.form-check-label
-                      %input.form-check-input.yes{:type => "checkbox", :value => 'Y'} Y
+                      %input.yes{:type => "checkbox", :value => 'Y'} Y
                     %label.form-check-label
-                      %input.form-check-input.no{:type => "checkbox", :value => "N"} N
+                      %input.no{:type => "checkbox", :value => "N"} N
 
     = form_tag update_selected_books_path, method: :put, class: 'form-horizontal' do
       .row
