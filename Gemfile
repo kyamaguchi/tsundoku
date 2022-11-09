@@ -2,26 +2,16 @@ ruby "2.7.5"
 
 source 'https://rubygems.org'
 
-gem 'rails', '~> 5.2.8'
+gem 'rails', '~> 6.1.7'
 gem 'sqlite3'
-
-# Use Puma as the app server
-gem 'puma', '~> 3.0'
-# Use SCSS for stylesheets
+gem 'puma'
 gem 'sass-rails'
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier'
+gem 'turbolinks'
+gem 'jbuilder'
+gem 'bootsnap', '>= 1.4.4', require: false
 
-# Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
 
 gem 'kindle_manager'
 gem 'capybara'
@@ -43,5 +33,5 @@ group :development, :test do
 end
 
 group :development do
-  gem 'listen', '~> 3.0.5'
+  gem 'listen'
 end
