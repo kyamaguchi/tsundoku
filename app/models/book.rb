@@ -7,7 +7,7 @@ class Book < ApplicationRecord
 
   before_validation :set_author
 
-  validates_uniqueness_of :asin
+  validates :asin, uniqueness: { scope: :tag }
   validates_presence_of :asin, :title
 
   def as_json(options={})
