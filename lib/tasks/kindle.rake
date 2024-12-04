@@ -14,7 +14,7 @@ namespace :kindle do
     books = client.load_kindle_books
     puts "Found #{books.size} books"
     books.each do |book|
-      next if Book.where(asin: book.asin).exists?
+      next if Book.where(asin: book.asin, tag: book.tag).exists?
       Book.create!(asin: book.asin, title: book.title, raw_author: book.author, tag: book.tag, date: book.date, collection_count: book.collection_count)
       puts "Create [#{book.title}]"
     end
